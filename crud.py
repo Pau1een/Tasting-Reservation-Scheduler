@@ -7,10 +7,14 @@ from datetime import datetime, timedelta
 def create_user(username):
     """Create a new user and add it to database."""
 
+    # Check if the username already exists
+    if User.query.filter_by(username=username).first():
+        raise ValueError("Username already exists")
+    
     new_user= User(username=username)
-
+    db.session.add(new_user)
+    db.session.commit()
     return new_user
-
 
 
 def get_user(username):
@@ -40,25 +44,17 @@ def get_available_timeslots(date):
 
     return timeslots
 
-# def save_appointment(username, appointment_date):
-#     """Save and return appointment."""
-
-#     saved_appointment = Appointment(username=username, appointment_date=appointment_date)
-
-#     return saved_appointment
 
 
+def create_reservation(username, date, start_time, end_time):
+    """ Create a reservation. """
 
-# def update_appointment(updated_appointment, username, appointment_date):
-#     """ Update appointment. """
+    new_reservation = Reservation.query.filter(Reservation.username==username, Reservation.date==date, Reservation.start_time==start_time, Reservation.end_time==end_time).first()
+    print(new_reservation)
+    db.session.add(new_reservation)
+    db.session.commit()
 
-#     updated_appointment = Appointment.query.filter(Appointment.username==username, Appointment.appointment_date==appointment_date).first()
-#     print(updated_appointment)
-#     updated_appointment.appointment_date = updated_appointment
-#     db.session.add(updated_appointment)
-#     db.session.commit()
-
-#     return updated_appointment
+    return new_reservation
 
 
 

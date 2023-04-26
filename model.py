@@ -10,10 +10,10 @@ class User(db.Model):
 
     username = db.Column(db.String, primary_key=True)
 
-    appointments = db.relationship("Reservation", back_populates="users")
+    reservations = db.relationship("Reservation", back_populates="users")
 
     def __repr__(self):
-        return f"<User username={self.username} user_id={self.user_id}>"
+        return f"<User username={self.username}>"
 
 
 class Reservation(db.Model):

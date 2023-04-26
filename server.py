@@ -21,7 +21,7 @@ def login():
 
 
 @app.route('/create_user', methods=["POST"])
-def make_user():
+def create_user():
     """Create a new user account."""
 
     username = request.form.get("username")
