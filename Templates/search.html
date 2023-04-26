@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Search{% endblock %}
+
+{% block body %}
+<link href="/static/css/search.css" rel="stylesheet">
+<h2>Search for a reservation here!</h2>
+Select start time and end time:
+<input type="datetime-local" id="start-time" name="start-time">
+<input type="datetime-local" id="end-time" name="end-time">
+
+<br>
+<ul>
+    <li><a href="/view_reservations">View reservations</a></li>
+    <li><a href="/logout">Logout</a></li>
+</ul>
+
+{% endblock %}

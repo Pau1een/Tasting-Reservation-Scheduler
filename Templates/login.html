@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block body %}
+<link href="/static/css/login.css" rel="stylesheet">
+    <h1>Melon Tasting Reservation Scheduler</h1>
+
+    <form action="/login" method="POST" style="margin-top: 60px;">
+        <label for="username" style="color: black; font-weight: bold; font-size: 20px; margin-right: 10px;">Log in</label>
+        <input type="text" id="username" name="username" required>
+        <input type="submit">
+    </form>
+    <form action="/create_user" method="POST" style="margin-top: 60px;">
+            <label for="username" style="color: black; font-weight: bold; font-size: 20px; margin-right: 10px;">Create Account</label>
+            <input type="text" id="username" name="username" required>
+            <input type="submit">
+    </form>
+
+{% endblock %}
