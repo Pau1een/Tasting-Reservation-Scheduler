@@ -5,8 +5,28 @@
 <link href="/static/css/search.css" rel="stylesheet">
 <h2>Search for a reservation here!</h2>
 Select start time and end time:
-<input type="datetime-local" id="start-time" name="start-time">
-<input type="datetime-local" id="end-time" name="end-time">
+<input type="time" id="start-time" name="start-time" step="1800"> <!-- 30 minutes * 60 seconds = 1800 -->
+<input type="time" id="end-time" name="end-time" step="1800">
+
+<label for="datepicker">Select Date: </label>
+<input type="text" id="datepicker">
+
+<script>
+$( function() {
+    $( "#datepicker" ).datepicker({
+        dateFormat: "yy-mm-dd",
+        minDate: 0,
+        maxDate: "+2w",
+        showButtonPanel: true,
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "1900:2023",
+        showAnim: "slide"
+    });
+} );
+</script>
+
+<button onclick="saveReservation()">Save Reservation</button>
 
 <br>
 <ul>
@@ -14,4 +34,9 @@ Select start time and end time:
     <li><a href="/logout">Logout</a></li>
 </ul>
 
+
+<script src="../static/js/search.js"></script>
+<script src="../static/js/save_reservation.js"></script>
+
 {% endblock %}
+
