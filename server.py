@@ -53,7 +53,7 @@ def process_login():
     else:
         # Log in user by storing the user's username in session
         session["username"] = user.username
-        flash(f"Hello!  You are now logged in, {user.username}!")
+        flash(f"Melontastic!  You are now logged in {user.username}")
         return render_template('search.html', username=user.username)
 
 @app.route('/logout')
