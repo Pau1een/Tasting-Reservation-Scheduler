@@ -4,39 +4,59 @@
 {% block body %}
 <link href="/static/css/search.css" rel="stylesheet">
 <h2>Search for a reservation here!</h2>
-Select start time and end time:
-<input type="time" id="start-time" name="start-time" step="1800"> <!-- 30 minutes * 60 seconds = 1800 -->
-<input type="time" id="end-time" name="end-time" step="1800">
+
+<form id="reservation">
+Select time:
+<select id="time" name="time">
+    {% for hour in range(24) %}
+        {% for minute in [0, 30] %}
+        <option value="{{ '%02d:%02d:00'|format(hour, minute) }}">{{ '%02d:%02d'|format(hour, minute) }}</option>
+        {% endfor %}
+    {% endfor %}
+</select>
 
 <label for="datepicker">Select Date: </label>
-<input type="text" id="datepicker">
+<input type="text" id="datepicker" name="date" placeholder="YYYY-MM-DD" required>
 
 <script>
 $( function() {
     $( "#datepicker" ).datepicker({
         dateFormat: "yy-mm-dd",
         minDate: 0,
-        maxDate: "+2w",
         showButtonPanel: true,
         changeMonth: true,
         changeYear: true,
         yearRange: "1900:2023",
         showAnim: "slide"
     });
+
+
+    $("#start-time").on("change", function() {
+        var time = new Date($(this).val());
+        var minutes = time.getMinutes();
+        if (minutes < 15) {
+            time.setMinutes(0);
+        } else if (minutes < 45) {
+            time.setMinutes(30);
+        } else {
+            time.setMinutes(0);
+            time.setHours(time.getHours() + 1);
+        }
+        $(this).val(time.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+    });
 } );
 </script>
 
-<button onclick="saveReservation()">Save Reservation</button>
-
+<button onclick="submitReservation()">Save Reservation</button>
+</form>
 <br>
+
 <ul>
     <li><a href="/view_reservations">View reservations</a></li>
     <li><a href="/logout">Logout</a></li>
 </ul>
 
-
-<script src="../static/js/search.js"></script>
-<script src="../static/js/save_reservation.js"></script>
+<script src="/static/js/save_reservation.js"></script>
+<script src="/static/js/search.js"></script>
 
 {% endblock %}
-

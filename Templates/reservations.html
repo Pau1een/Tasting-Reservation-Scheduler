@@ -5,11 +5,30 @@
 
 <link href="/static/css/reservations.css" rel="stylesheet">
 
-
 <ul>
-    <li><a href="/calendar">Search</a></li>
-    <li><a href="/appointments">View reservations</a></li>
+    <li><a href="/search">Search</a></li>
     <li><a href="/logout">Logout</a></li>
 </ul>
+
+<div class="res">
+    {% if reservations %}
+        {% for reservation in reservations %}
+            <div class="reservation">{{ reservation.date.strftime('%m/%d/%Y') }} {{ reservation.start_time.strftime('%I:%M %p') }}</div>
+        {% endfor %}
+    {% else %}
+        <p>No reservations yet</p>
+    {% endif %}
+</div>
+
+
+<!-- <div class="res">
+{% if reservations %}
+    {% for reservation in reservations %}
+        {{ reservation.date.strftime('%m/%d/%Y') }} {{ reservation.start_time.strftime('%I:%M %p') }}
+    {% endfor %}
+{% else %}
+<p>No reservations yet</p>
+{% endif %}
+</div> -->
 
 {% endblock %}

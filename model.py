@@ -2,7 +2,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
-
 class User(db.Model):
     """A user"""
 
@@ -10,7 +9,7 @@ class User(db.Model):
 
     username = db.Column(db.String, primary_key=True)
 
-    reservations = db.relationship("Reservation", back_populates="users")
+    reservations = db.relationship("Reservation", back_populates="user")
 
     def __repr__(self):
         return f"<User username={self.username}>"
@@ -21,17 +20,14 @@ class Reservation(db.Model):
     __tablename__ = "reservations"
 
     reservation_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
-    username = db.Column(db.String, db.ForeignKey("users.username"), nullable=True)
+    username = db.Column(db.String, db.ForeignKey("users.username"), nullable=False)
     date = db.Column(db.Date, nullable=False)
     start_time = db.Column(db.Time, nullable=False)
-    end_time = db.Column(db.Time, nullable=False)
 
-    users = db.relationship("User", back_populates="reservations")
+    user = db.relationship("User", back_populates="reservations")
 
     def __repr__(self):
-        return f"<Reservation date={self.date} start_time={self.start_time} end_time={self.end_time}>"
-
-
+        return f"<Reservation date={self.date} start_time={self.start_time}>"
 
 def connect_to_db(flask_app, db_uri="postgresql:///melon", echo=False):
     """Connect to database."""
@@ -45,9 +41,7 @@ def connect_to_db(flask_app, db_uri="postgresql:///melon", echo=False):
 
     print("Connected to the db!")
 
-
 if __name__ == "__main__":
     from server import app
-
 
     connect_to_db(app)

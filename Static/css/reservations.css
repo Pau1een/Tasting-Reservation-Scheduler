@@ -3,3 +3,81 @@
     background: no-repeat center/cover url('/static/img/reservations.jpg');
     background-attachment: fixed;
 }
+
+.nav-container {
+    position: absolute; 
+    top: 25px; 
+    right: 5px; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+li {
+    margin-left: 20px;
+}
+
+
+li:first-child {
+    margin-left: auto; 
+}
+
+ul li a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+ul li a:hover {
+    background-color: #3e8e41;
+}
+
+
+.flash-msg{
+    position: absolute;
+    top: 10px;
+    right: 440px;
+    color: #0d155c;
+    font-size: 37px; 
+    font-weight: bold; 
+}
+
+
+p {
+    position: absolute;
+    top: 200px;
+    right: 300px;
+    color: #0d155c;
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+.res {
+    position: absolute;
+    top: 200px;
+    right: 300px;
+    color: #0d155c;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.reservation {
+    border-left: 6px solid #0d155c; /* change color and thickness as desired */
+    padding-left: 10px; /* adjust as desired */
+    margin-bottom: 10px; /* adjust as desired */
+}
