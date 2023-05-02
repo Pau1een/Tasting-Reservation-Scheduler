@@ -88,14 +88,21 @@ def book_reservation():
     date = data.get('date')
     start_time = data.get('start_time')
 
-    if crud.get_reservation_by_date_time(date, start_time):
-        return jsonify({'success': False, 'message': 'Timeslot taken. Please choose another time.'})
+    existing_user_date = crud.user_has_reservation_on_date(user, date)
+    if existing_user_date:
+        return jsonify({'success': False, 'message': 'You already have a reservation for this date'})
 
-    reservation_ = Reservation(username=user.username,
+    existing_date_time = crud.get_reservation_by_date_time(date, start_time)
+    if existing_date_time:
+        return jsonify({'success': False, 'message': 'Timeslot taken. Please choose another time.'})
+    # if crud.get_reservation_by_date_time(date, start_time):
+    #     return jsonify({'success': False, 'message': 'Timeslot taken. Please choose another time.'})
+
+    booked_reservation= Reservation(username=user.username,
                             date=date,
                             start_time=start_time)
 
-    db.session.add(reservation_)
+    db.session.add(booked_reservation)
     db.session.commit()
 
     return jsonify({'success': True, 'message': 'Reservation taken!'})

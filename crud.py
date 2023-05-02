@@ -47,7 +47,6 @@ def get_available_timeslots(date):
     return timeslots
 
 
-
 def create_reservation(username, date, start_time):
     """Create a reservation."""
 
@@ -55,7 +54,6 @@ def create_reservation(username, date, start_time):
     reservation = Reservation.query.filter_by(username=username, date=date, start_time=start_time).first()
     if reservation:
         raise ValueError("Reservation already exists")
-
     # Create a new reservation
     reservation = Reservation(username=username, date=date, start_time=start_time)
     db.session.add(reservation)
@@ -69,6 +67,13 @@ def get_reservation_by_date_time(date, start_time):
     return Reservation.query.filter_by(date=date,
                                         start_time=start_time).first()
 
+def user_has_reservation_on_date(user, date):
+    """Check if user has a reservation scheduled for a specific date."""
+
+    reservation = Reservation.query.filter_by(user=user, date=date).first()
+    return reservation is not None
+
+    
 
 if __name__ == "__main__":
     from server import app

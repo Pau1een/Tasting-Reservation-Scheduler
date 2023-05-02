@@ -29,7 +29,7 @@ fetch('/book', {
     if (data.success) {
     alert('Reservation added!');  
     } else {
-    alert('Reservation already taken. Try again.');
+    alert(data.message);
     }
 })
 
