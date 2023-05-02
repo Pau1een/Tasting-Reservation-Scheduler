@@ -51,7 +51,7 @@ ul li a:hover {
 .flash-msg{
     position: absolute;
     top: 10px;
-    right: 440px;
+    right: 380px;
     color: #0d155c;
     font-size: 37px; 
     font-weight: bold; 
@@ -60,8 +60,8 @@ ul li a:hover {
 
 p {
     position: absolute;
-    top: 200px;
-    right: 300px;
+    top: 100px;
+    right: 150px;
     color: #0d155c;
     font-size: 20px; 
     font-weight: bold; 
@@ -69,15 +69,15 @@ p {
 
 .res {
     position: absolute;
-    top: 200px;
-    right: 300px;
+    top: 250px;
+    right: 250px;
     color: #0d155c;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
 }
 
 .reservation {
-    border-left: 6px solid #0d155c; /* change color and thickness as desired */
-    padding-left: 10px; /* adjust as desired */
-    margin-bottom: 10px; /* adjust as desired */
+    border-left: 6px solid #0d155c; 
+    padding-left: 10px; 
+    margin-bottom: 10px; 
 }
